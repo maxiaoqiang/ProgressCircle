@@ -13,6 +13,7 @@
 		FE706B531D7E688000578D2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE706B511D7E688000578D2B /* Main.storyboard */; };
 		FE706B551D7E688000578D2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE706B541D7E688000578D2B /* Assets.xcassets */; };
 		FE706B581D7E688000578D2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE706B561D7E688000578D2B /* LaunchScreen.storyboard */; };
+		FE706B621D7E695F00578D2B /* XQCircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE706B611D7E695F00578D2B /* XQCircleView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		FE706B541D7E688000578D2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE706B571D7E688000578D2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE706B591D7E688000578D2B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE706B601D7E695F00578D2B /* XQCircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XQCircleView.h; sourceTree = "<group>"; };
+		FE706B611D7E695F00578D2B /* XQCircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XQCircleView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,7 @@
 		FE706B471D7E688000578D2B /* CirleDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FE706B5F1D7E694100578D2B /* CicleView */,
 				FE706B4B1D7E688000578D2B /* AppDelegate.h */,
 				FE706B4C1D7E688000578D2B /* AppDelegate.m */,
 				FE706B4E1D7E688000578D2B /* ViewController.h */,
@@ -77,6 +81,15 @@
 				FE706B491D7E688000578D2B /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE706B5F1D7E694100578D2B /* CicleView */ = {
+			isa = PBXGroup;
+			children = (
+				FE706B601D7E695F00578D2B /* XQCircleView.h */,
+				FE706B611D7E695F00578D2B /* XQCircleView.m */,
+			);
+			path = CicleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +165,7 @@
 				FE706B501D7E688000578D2B /* ViewController.m in Sources */,
 				FE706B4D1D7E688000578D2B /* AppDelegate.m in Sources */,
 				FE706B4A1D7E688000578D2B /* main.m in Sources */,
+				FE706B621D7E695F00578D2B /* XQCircleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
