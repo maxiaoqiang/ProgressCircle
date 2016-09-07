@@ -19,8 +19,9 @@
     [super viewDidLoad];
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     XQCircleView *circle = [[XQCircleView alloc] initWithFrame:CGRectMake(20, 100, width - 40, width - 40)];
-    circle.dataArray = @[@0.5,@0.2,@0.3];
+    circle.dataArray = @[@0.2,@0.2,@0.1,@0.3,@0.2];
     circle.circleWidth = 40.0f;
+    circle.progress = 0.7;
     circle.mainColor = [UIColor greenColor];
     circle.secondaryColor = [UIColor orangeColor];
     [self.view addSubview:circle];

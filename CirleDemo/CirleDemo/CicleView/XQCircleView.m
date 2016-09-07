@@ -35,6 +35,7 @@
     CGFloat seperate = (separeteAngle * 2 * M_PI) / 360;
     CGFloat startAngle = -M_PI_2 + seperate * 0.5;
     
+    ///底层颜色绘制
     for (NSUInteger i = 0; i < sectionCount; i ++) {
         CGFloat percentA = [self.dataArray[i] floatValue];
         CGFloat result = percentA * (360 - sectionCount * separeteAngle);
@@ -43,13 +44,47 @@
         
         UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:outerRadius startAngle:startAngle endAngle: endAngle clockwise:YES];
         [path addArcWithCenter:center radius:innerRadius startAngle:endAngle endAngle:startAngle clockwise:NO];
-        [self.mainColor set];
+        [self.secondaryColor set];
         [path fill];
 
         startAngle += seperate + outResult;
+    }
+    ///进度颜色绘制
+    //计算得出阶段总数
+    NSInteger totalP = 0;
+    CGFloat sumP = 0.0f;
+    for (NSUInteger i = 0; i <sectionCount; i ++) {
+        CGFloat percentA = [self.dataArray[i] floatValue];
+        totalP += 1;
+        sumP += percentA;
+        NSLog(@"%ld",totalP);
+
+        if (sumP >=  self.progress) {
+            
+            break;
+        }
 
     }
+    ///进度颜色绘制
+    CGFloat sumPer = 0.0f;
+    for (NSUInteger i = 0; i < totalP; i ++) {
+        CGFloat percentA = [self.dataArray[i] floatValue];
+        if (i == totalP - 1) {
+            percentA = self.progress - sumPer;
+        }
+        sumPer += percentA;
 
+        CGFloat result = percentA * (360 - sectionCount * separeteAngle);
+        CGFloat outResult = (result * 2 * M_PI)/360;
+        CGFloat endAngle = startAngle + outResult;
+        
+        UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center radius:outerRadius startAngle:startAngle endAngle: endAngle clockwise:YES];
+        [path addArcWithCenter:center radius:innerRadius startAngle:endAngle endAngle:startAngle clockwise:NO];
+        [self.mainColor set];
+        [path fill];
+        
+        startAngle += seperate + outResult;
+    }
     
 }
 
