@@ -20,6 +20,10 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     if ([super initWithFrame:frame]) {
         self.backgroundColor = [UIColor lightGrayColor];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapAction:)];
+        [self addGestureRecognizer:tap];
+        
     }
     return self;
 }
@@ -57,7 +61,6 @@
         CGFloat percentA = [self.dataArray[i] floatValue];
         totalP += 1;
         sumP += percentA;
-        NSLog(@"%ld",totalP);
 
         if (sumP >=  self.progress) {
             
@@ -88,5 +91,35 @@
     
 }
 
+-(void)handleTapAction:(UITapGestureRecognizer *)tap{
+    
+    CGFloat width = self.bounds.size.width;
+    
+    CGPoint C = [tap locationInView:tap.view];
+    CGPoint A = CGPointMake(width * 0.5, 0.0);
+    CGPoint B = CGPointMake(width* 0.5, width * 0.5);
+    CGFloat a=[self distancepointA:B pointB:C];
+    CGFloat b=[self distancepointA:A pointB:C];
+    CGFloat c=[self distancepointA:B pointB:A];
+    CGFloat corB = (a * a + c * c - b* b) /(2*a*c);
+    CGFloat currentCor = acosf(corB);
+    
+    if (a > (width* 0.5 - _circleWidth) && a < width * 0.5) {
+        if (C.x < width * 0.5) {
+            //在左侧情况下
+            currentCor = 2 * M_PI - currentCor;
+        }
+    
+    }
+    
+    self.selectedNum(2);
+}
+
+///计算两点之间的距离
+-(CGFloat)distancepointA:(CGPoint)pointA pointB:(CGPoint)pointB{
+    
+    CGFloat dis = (pointA.x - pointB.x)*(pointA.x - pointB.x) + (pointA.y - pointB.y)*(pointA.y - pointB.y);
+    return sqrtf(dis);
+}
 
 @end

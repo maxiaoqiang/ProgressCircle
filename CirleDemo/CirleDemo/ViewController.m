@@ -24,6 +24,8 @@
     circle.progress = 0.7;
     circle.mainColor = [UIColor greenColor];
     circle.secondaryColor = [UIColor orangeColor];
+    circle.selectedNum = ^(NSInteger number){
+    };
     [self.view addSubview:circle];
 }
 
