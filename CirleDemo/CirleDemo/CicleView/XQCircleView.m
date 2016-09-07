@@ -19,7 +19,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if ([super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapAction:)];
         [self addGestureRecognizer:tap];
@@ -30,7 +30,7 @@
 
 - (void)drawRect:(CGRect)rect {
     NSUInteger sectionCount = self.dataArray.count;
-    
+
     CGFloat wh = rect.size.width * 0.5;
     CGPoint center = CGPointMake(wh, wh);
     CGFloat innerRadius = wh - _circleWidth;
@@ -109,10 +109,35 @@
             //在左侧情况下
             currentCor = 2 * M_PI - currentCor;
         }
+        
+        NSInteger clickNum = 0;
+        CGFloat sumBefore = 0.0f;
+        NSUInteger sectionCount = self.dataArray.count;
+        CGFloat seperate = (separeteAngle * 2 * M_PI) / 360;
+        CGFloat startAngle = seperate * 0.5;
+        
+        for (NSUInteger i = 0; i < sectionCount; i ++) {
+            CGFloat percentA = [self.dataArray[i] floatValue];
+            CGFloat result = percentA * (360 - sectionCount * separeteAngle);
+            CGFloat outResult = (result * 2 * M_PI)/360;
+            CGFloat endAngle = startAngle + outResult;
+            if (currentCor < endAngle && currentCor > startAngle) {
+                
+                break;
+                
+            }else{
+                clickNum += 1;
+                sumBefore += percentA;
+                startAngle += seperate + outResult;
+            }
+            
+            
+        }
+        self.selectedNum(clickNum);
     
     }
     
-    self.selectedNum(2);
+   
 }
 
 ///计算两点之间的距离
@@ -121,5 +146,13 @@
     CGFloat dis = (pointA.x - pointB.x)*(pointA.x - pointB.x) + (pointA.y - pointB.y)*(pointA.y - pointB.y);
     return sqrtf(dis);
 }
+
+-(void)setSliderValue:(CGFloat)sliderValue{
+    self.progress = sliderValue;
+    [self setNeedsDisplay];
+
+}
+
+
 
 @end

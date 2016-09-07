@@ -26,4 +26,8 @@ typedef void(^clickSectionNum)(NSInteger number);
 @property (nonatomic, copy)  clickSectionNum selectedNum;
 
 
+@property (nonatomic, assign) CGFloat sliderValue;
+
+
+
 @end
